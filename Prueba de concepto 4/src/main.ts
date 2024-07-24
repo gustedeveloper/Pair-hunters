@@ -44,6 +44,8 @@ interface CardsData {
               clickedCardsImg.forEach(img => {
                 img.src = "";
               })
+              flippedCards = [];
+              clickedCardsImg = [];
             }, 1500);
           }
         }
