@@ -54,8 +54,7 @@ h1 {
   grid-template-rows: repeat(3, auto);
   gap: 15px;
 }
-
-#card {
+.card {
   background-color: #AEE2FF;
   width: 150px;
   height: 150px;
