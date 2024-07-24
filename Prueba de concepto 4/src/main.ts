@@ -22,11 +22,13 @@ interface CardsData {
   const cardsDiv = Array.from(cardsDivElements);
   const cardsImg = Array.from(cardsImgElements);
 
+  let flippedCards : number[] = [];
   let clickedCardsImg : HTMLImageElement[] = [];
 
   cardsDiv.forEach((card) => {
       card.addEventListener("click", () => {
         const clickedCardId = cardsDiv.indexOf(card);
+        flippedCards.push(clickedCardId);
         const imgElement = cardsImg[clickedCardId];
         if (imgElement instanceof HTMLImageElement) {
           imgElement.src = cardsData[clickedCardId].img;
@@ -37,7 +39,7 @@ interface CardsData {
         const secondCardImg = clickedCardsImg[1];
 
         if (firstCardImg instanceof HTMLImageElement && secondCardImg instanceof HTMLImageElement) {
-          if (firstCardImg.src !== secondCardImg.src) {
+          if (flippedCards.length === 2 && firstCardImg.src !== secondCardImg.src) {
             setTimeout(() => {
               clickedCardsImg.forEach(img => {
                 img.src = "";
