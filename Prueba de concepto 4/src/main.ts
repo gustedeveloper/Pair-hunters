@@ -16,38 +16,16 @@ interface CardsData {
     }
   ]
 
-  const cardsDivElements = document.querySelectorAll(".card");
-  const cardsImgElements = document.querySelectorAll(".card-img");
+cardsData.forEach((card, index) => {
+  const divCard = document.getElementById(`card${index}`);
 
-  const cardsDiv = Array.from(cardsDivElements);
-  const cardsImg = Array.from(cardsImgElements);
+  if (divCard && divCard instanceof HTMLDivElement) {
+    divCard.addEventListener("click", () => {
+      const imgCard = document.getElementById(`img${index}`);
 
-  let flippedCards : number[] = [];
-  let clickedCardsImg : HTMLImageElement[] = [];
-
-  cardsDiv.forEach((card) => {
-      card.addEventListener("click", () => {
-        const clickedCardId = cardsDiv.indexOf(card);
-        flippedCards.push(clickedCardId);
-        const imgElement = cardsImg[clickedCardId];
-        if (imgElement instanceof HTMLImageElement) {
-          imgElement.src = cardsData[clickedCardId].img;
-          clickedCardsImg.push(imgElement);
+      if (imgCard && imgCard instanceof HTMLImageElement) {
+        imgCard.src = card.img;
       }
-
-        const firstCardImg = clickedCardsImg[0];
-        const secondCardImg = clickedCardsImg[1];
-
-        if (firstCardImg instanceof HTMLImageElement && secondCardImg instanceof HTMLImageElement) {
-          if (flippedCards.length === 2 && firstCardImg.src !== secondCardImg.src) {
-            setTimeout(() => {
-              clickedCardsImg.forEach(img => {
-                img.src = "";
-              })
-              flippedCards = [];
-              clickedCardsImg = [];
-            }, 1500);
-          }
-        }
-      });
-  });
+    });
+  }
+});
