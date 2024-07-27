@@ -48,7 +48,7 @@ h1 {
   text-align: center;
 }
 
-#container {
+#card-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, auto);
