@@ -56,3 +56,24 @@ const createInitialCardColection = (cardsData: CardData[]): Card[] => {
 };
 
 export let cards: Card[] = createInitialCardColection(cardsData);
+
+type GameState =
+  | "GameNotStarted"
+  | "ZeroCardsFlipped"
+  | "OneCardFlipped"
+  | "TwoCardsFlipped"
+  | "GameCompleted";
+
+export interface Board {
+  cards: Card[];
+  gameState: GameState;
+  indexFlippedCardA?: number;
+  indexFlippedCardB?: number;
+}
+
+const createInitialBoard = (): Board => ({
+  cards: cards,
+  gameState: "GameNotStarted",
+});
+
+export let board: Board = createInitialBoard();
