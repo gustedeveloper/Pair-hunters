@@ -2,4 +2,6 @@ import "./style.css";
 
 import { cards } from "./model";
 
-console.log(cards);
+import { shuffleCards } from "./motor";
+
+console.log(shuffleCards(cards));
