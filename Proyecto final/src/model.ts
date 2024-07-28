@@ -44,4 +44,15 @@ const createInitialCard = (idCard: number, image: string): Card => ({
   found: false,
 });
 
-const createInitialCardColection = (cardsData: CardData[]): Card[] => {};
+const createInitialCardColection = (cardsData: CardData[]): Card[] => {
+  let cards: Card[] = [];
+  while (cards.length < 12) {
+    cardsData.forEach((card) => {
+      cards.push(createInitialCard(card.idCard, card.image));
+      cards.push(createInitialCard(card.idCard, card.image));
+    });
+  }
+  return cards;
+};
+
+export let cards: Card[] = createInitialCardColection(cardsData);
