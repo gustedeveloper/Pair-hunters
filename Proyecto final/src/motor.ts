@@ -1,4 +1,4 @@
-import { Board, board, Card, cards } from "./model";
+import { Board, Card, cards } from "./model";
 
 export const shuffleCards = (cards: Card[]): Card[] => {
   for (let i = cards.length - 1; i > 0; i--) {
@@ -10,7 +10,7 @@ export const shuffleCards = (cards: Card[]): Card[] => {
 
 console.log(shuffleCards(cards));
 
-const cardCanBeFlipped = (board: Board, index: number): boolean => {
+export const cardCanBeFlipped = (board: Board, index: number): boolean => {
   if (
     (board.cards[index].found === false &&
       board.cards[index].flipped === false) ||
@@ -20,8 +20,6 @@ const cardCanBeFlipped = (board: Board, index: number): boolean => {
   }
   return false;
 };
-
-console.log(cardCanBeFlipped(board, 1));
 
 /* const flipCard = (board: Board, index: number): void => {
 
