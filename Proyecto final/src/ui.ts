@@ -1,6 +1,6 @@
 import { board, Board } from "./model";
 
-import { startGame, cardCanBeFlipped } from "./motor";
+import { startGame, cardCanBeFlipped, flipCard } from "./motor";
 
 const startButton = document.getElementById("start");
 
@@ -21,7 +21,7 @@ const checkIfCardCanBeFlipped = (board: Board, index: number): boolean => {
   return cardCanBeFlipped(board, index);
 };
 
-const flipCard = (board: Board, index: number): void => {
+export const flipImgCard = (board: Board, index: number): void => {
   const imgCardElement = document.querySelector(`img[data-index="${index}"]`);
 
   const imgCard = board.cards[index].image;

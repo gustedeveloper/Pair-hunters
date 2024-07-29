@@ -1,4 +1,5 @@
-import { Board, Card, cards } from "./model";
+import { Board, Card } from "./model";
+import { flipImgCard } from "./ui";
 
 export const shuffleCards = (cards: Card[]): Card[] => {
   for (let i = cards.length - 1; i > 0; i--) {
@@ -7,8 +8,6 @@ export const shuffleCards = (cards: Card[]): Card[] => {
   }
   return cards;
 };
-
-console.log(shuffleCards(cards));
 
 export const cardCanBeFlipped = (board: Board, index: number): boolean => {
   if (
@@ -21,19 +20,40 @@ export const cardCanBeFlipped = (board: Board, index: number): boolean => {
   return false;
 };
 
-/* const flipCard = (board: Board, index: number): void => {
-
-} */
-
-export const pairOfCards = (
-  indexA: number,
-  indexB: number,
-  board: Board
-): boolean => {
-  if (board.cards[indexA].idCard === board.cards[indexB].idCard) {
-    return true;
+export const flipCard = (board: Board, index: number): void => {
+  board.cards[index].flipped = true;
+  flipImgCard(board, index);
+  if (
+    board.indexFlippedCardA === undefined &&
+    board.gameState === "ZeroCardsFlipped"
+  ) {
+    board.gameState = "OneCardFlipped";
+    console.log(board.gameState);
+    board.indexFlippedCardA = board.cards[index].idCard;
+    console.log(board.indexFlippedCardA);
+  } else if (
+    board.indexFlippedCardB === undefined &&
+    board.gameState === "OneCardFlipped"
+  ) {
+    board.gameState = "TwoCardsFlipped";
+    console.log(board.gameState);
+    board.indexFlippedCardB = board.cards[index].idCard;
+    console.log(board.indexFlippedCardB);
   }
-  return false;
+
+  if (board.gameState === "TwoCardsFlipped") {
+    if (board.indexFlippedCardA && board.indexFlippedCardB) {
+      pairOfCards(board.indexFlippedCardA, board.indexFlippedCardB, board);
+    }
+  }
+};
+
+const pairOfCards = (indexA: number, indexB: number, board: Board): void => {
+  if (indexA === indexB) {
+    console.log(board);
+  } else {
+    console.log("It's not a pair!");
+  }
 };
 
 /*const foundPair = (board: Board, indexA: number, indexB: number): void => {
@@ -54,5 +74,5 @@ export const gameCompleted = (board: Board): boolen => {};
 
 export const startGame = (board: Board): void => {
   board.cards = shuffleCards(board.cards);
-  console.log(board);
+  board.gameState = "ZeroCardsFlipped";
 };
