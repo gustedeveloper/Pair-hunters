@@ -64,3 +64,15 @@ h1 {
   border-radius: 10%;
   cursor: pointer;
 }
+
+#start {
+  background-color: salmon;
+  font-size: 1.5rem;
+  margin: 15px;
+  color: white;
+  width: 200px;
+  height: 50px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
