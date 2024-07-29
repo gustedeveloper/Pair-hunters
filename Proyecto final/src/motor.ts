@@ -38,9 +38,23 @@ export const pairOfCards = (
   return false;
 };
 
-const foundPair = (board: Board, indexA: number, indexB: number): void => {
+/*const foundPair = (board: Board, indexA: number, indexB: number): void => {
   board.cards[indexA].found = true;
   board.cards[indexB].found = true;
 
-  //comprobar que la partida está completa, añadir función gameCompleted
+  gameCompleted(board);
+
+};
+
+const pairNotFound = (board: Board, indexA: number, indexB: number): void => {
+
+}
+
+export const gameCompleted = (board: Board): boolen => {};
+
+*/
+
+export const startGame = (board: Board): void => {
+  board.cards = shuffleCards(board.cards);
+  console.log(board);
 };
