@@ -13,27 +13,27 @@ interface CardData {
 const cardsData: CardData[] = [
   {
     idCard: 1,
-    image: "./images/1.png",
+    image: "./src/images/1.png",
   },
   {
     idCard: 2,
-    image: "./images/2.png",
+    image: "./src/images/2.png",
   },
   {
     idCard: 3,
-    image: "./images/3.png",
+    image: "./src/images/3.png",
   },
   {
     idCard: 4,
-    image: "./images/4.png",
+    image: "./src/images/4.png",
   },
   {
     idCard: 5,
-    image: "./images/5.png",
+    image: "./src/images/5.png",
   },
   {
     idCard: 6,
-    image: "./images/6.png",
+    image: "./src/images/6.png",
   },
 ];
 
