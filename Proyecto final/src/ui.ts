@@ -42,11 +42,19 @@ export const flipBackImg = (index: number): void => {
   }
 };
 
+export const flipBackAllImg = () => {
+  const imgElements = document.querySelectorAll("img[data-index]");
+  imgElements.forEach((img) => {
+    if (img instanceof HTMLImageElement) {
+      img.src = "";
+    }
+  });
+};
+
 export const handleClickButtons = () => {
   if (startButton && startButton instanceof HTMLButtonElement) {
     startButton.addEventListener("click", () => {
       startGame(board);
-      console.log(board.gameState);
     });
   }
 };
