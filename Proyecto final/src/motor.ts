@@ -1,5 +1,5 @@
 import { Board, Card } from "./model";
-import { flipImgCard } from "./ui";
+import { flipImgCard, flipBackImg } from "./ui";
 
 export const shuffleCards = (cards: Card[]): Card[] => {
   for (let i = cards.length - 1; i > 0; i--) {
@@ -78,6 +78,10 @@ const foundPair = (board: Board, indexA: number, indexB: number): void => {
 const pairNotFound = (board: Board, indexA: number, indexB: number): void => {
   console.log(board, indexA, indexB);
   console.log("Not pair!");
+  setTimeout(() => {
+    flipBackImg(indexA);
+    flipBackImg(indexB);
+  }, 2000);
 };
 
 //export const gameCompleted = (board: Board): boolean => {};

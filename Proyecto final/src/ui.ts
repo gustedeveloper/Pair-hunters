@@ -30,6 +30,14 @@ export const flipImgCard = (board: Board, index: number): void => {
   }
 };
 
+export const flipBackImg = (index: number): void => {
+  const imgCardElement = document.querySelector(`img[data-index="${index}"]`);
+
+  if (imgCardElement && imgCardElement instanceof HTMLImageElement) {
+    imgCardElement.src = "";
+  }
+};
+
 export const handleClickButtons = () => {
   if (startButton && startButton instanceof HTMLButtonElement) {
     startButton.addEventListener("click", () => {
