@@ -71,10 +71,18 @@ const pairOfCards = (indexA: number, indexB: number, board: Board): boolean => {
 const foundPair = (board: Board, indexA: number, indexB: number): void => {
   board.cards[indexA].found = true;
   board.cards[indexB].found = true;
-  resetBoardFlippedCardIndex(board);
-  resetGameState(board);
-  console.log(board, indexA, indexB);
-  console.log("Pair!");
+
+  const isCompleted = gameCompleted(board);
+
+  if (isCompleted === true) {
+    board.gameState = "GameCompleted";
+    console.log("CONGRATS! YOU MADE IT :)");
+  } else {
+    resetBoardFlippedCardIndex(board);
+    resetGameState(board);
+    console.log(board, indexA, indexB);
+    console.log("Pair!");
+  }
 };
 
 const pairNotFound = (board: Board, indexA: number, indexB: number): void => {
@@ -97,9 +105,13 @@ const resetGameState = (board: Board): void => {
   board.gameState = "ZeroCardsFlipped";
 };
 
-/*export const gameCompleted = (board: Board): boolean => {
-
-};*/
+export const gameCompleted = (board: Board): boolean => {
+  if (board.cards.every((card) => card.found === true)) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 export const startGame = (board: Board): void => {
   board.cards = shuffleCards(board.cards);

@@ -9,7 +9,7 @@ board.cards.forEach((__, index) => {
 
   if (divCard && divCard instanceof HTMLDivElement) {
     divCard.addEventListener("click", () => {
-      if (board.gameState === "ZeroCardsFlipped") {
+      if (board.gameState !== "GameNotStarted") {
         const canBeFlipped = checkIfCardCanBeFlipped(board, index);
         if (canBeFlipped === true) {
           flipCard(board, index);
