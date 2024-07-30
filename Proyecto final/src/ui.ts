@@ -9,9 +9,13 @@ board.cards.forEach((__, index) => {
 
   if (divCard && divCard instanceof HTMLDivElement) {
     divCard.addEventListener("click", () => {
-      const canBeFlipped = checkIfCardCanBeFlipped(board, index);
-      if (canBeFlipped === true) {
-        flipCard(board, index);
+      if (board.gameState === "ZeroCardsFlipped") {
+        const canBeFlipped = checkIfCardCanBeFlipped(board, index);
+        if (canBeFlipped === true) {
+          flipCard(board, index);
+        }
+      } else {
+        console.log("Press the button below to start the game!");
       }
     });
   }
@@ -42,6 +46,7 @@ export const handleClickButtons = () => {
   if (startButton && startButton instanceof HTMLButtonElement) {
     startButton.addEventListener("click", () => {
       startGame(board);
+      console.log(board.gameState);
     });
   }
 };
