@@ -29,7 +29,7 @@ export const flipCard = (board: Board, index: number): void => {
   ) {
     board.gameState = "OneCardFlipped";
     console.log(board.gameState);
-    board.indexFlippedCardA = board.cards[index].idCard;
+    board.indexFlippedCardA = index;
     console.log(board.indexFlippedCardA);
   } else if (
     board.indexFlippedCardB === undefined &&
@@ -37,40 +37,50 @@ export const flipCard = (board: Board, index: number): void => {
   ) {
     board.gameState = "TwoCardsFlipped";
     console.log(board.gameState);
-    board.indexFlippedCardB = board.cards[index].idCard;
+    board.indexFlippedCardB = index;
     console.log(board.indexFlippedCardB);
   }
 
   if (board.gameState === "TwoCardsFlipped") {
-    if (board.indexFlippedCardA && board.indexFlippedCardB) {
-      pairOfCards(board.indexFlippedCardA, board.indexFlippedCardB, board);
+    if (
+      board.indexFlippedCardA !== undefined &&
+      board.indexFlippedCardB !== undefined
+    ) {
+      const itsPair = pairOfCards(
+        board.indexFlippedCardA,
+        board.indexFlippedCardB,
+        board
+      );
+      if (itsPair === true) {
+        foundPair(board, board.indexFlippedCardA, board.indexFlippedCardB);
+      } else if (itsPair === false) {
+        pairNotFound(board, board.indexFlippedCardA, board.indexFlippedCardB);
+      }
     }
   }
 };
 
-const pairOfCards = (indexA: number, indexB: number, board: Board): void => {
-  if (indexA === indexB) {
-    console.log(board);
+const pairOfCards = (indexA: number, indexB: number, board: Board): boolean => {
+  if (board.cards[indexA].idCard === board.cards[indexB].idCard) {
+    return true;
   } else {
-    console.log("It's not a pair!");
+    return false;
   }
 };
 
-/*const foundPair = (board: Board, indexA: number, indexB: number): void => {
+const foundPair = (board: Board, indexA: number, indexB: number): void => {
   board.cards[indexA].found = true;
   board.cards[indexB].found = true;
-
-  gameCompleted(board);
-
+  console.log(board, indexA, indexB);
+  console.log("Pair!");
 };
 
 const pairNotFound = (board: Board, indexA: number, indexB: number): void => {
+  console.log(board, indexA, indexB);
+  console.log("Not pair!");
+};
 
-}
-
-export const gameCompleted = (board: Board): boolen => {};
-
-*/
+//export const gameCompleted = (board: Board): boolean => {};
 
 export const startGame = (board: Board): void => {
   board.cards = shuffleCards(board.cards);
