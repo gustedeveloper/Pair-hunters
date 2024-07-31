@@ -11,20 +11,30 @@ export const shuffleCards = (cards: Card[]): Card[] => {
 
 export const cardCanBeFlipped = (board: Board, index: number): boolean => {
   if (
+    board.indexFlippedCardA === index &&
+    board.gameState === "OneCardFlipped"
+  ) {
+    return false;
+  }
+  if (board.cards[index].found === true) {
+    return false;
+  }
+
+  if (
     (board.cards[index].found === false &&
       board.cards[index].flipped === false) ||
     board.gameState !== "TwoCardsFlipped"
   ) {
     return true;
-  } else {
-    return false;
   }
+  return false;
 };
 
 export const flipCard = (board: Board, index: number): void => {
   board.cards[index].flipped = true;
   flipImgCard(board, index);
   checkGameState(board, index);
+  console.log("its flipping");
 };
 
 const checkGameState = (board: Board, index: number): void => {
@@ -91,9 +101,10 @@ const pairNotFound = (board: Board, indexA: number, indexB: number): void => {
   setTimeout(() => {
     flipBackImg(indexA);
     flipBackImg(indexB);
-  }, 1200);
-  resetBoardFlippedCardIndex(board);
-  resetGameState(board);
+    resetBoardFlippedCardIndex(board);
+    resetGameState(board);
+    console.log(board.gameState);
+  }, 1500);
 };
 
 const resetBoardFlippedCardIndex = (board: Board): void => {
