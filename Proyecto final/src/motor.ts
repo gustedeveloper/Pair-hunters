@@ -90,10 +90,12 @@ const foundPair = (board: Board, indexA: number, indexB: number): void => {
     console.log("CONGRATS! YOU MADE IT :)");
     console.log(board);
   } else {
+    setTimeout(() => {
+      resetGameState(board);
+      console.log(board, indexA, indexB);
+      console.log("Pair!");
+    }, 1300);
     resetBoardFlippedCardIndex(board);
-    resetGameState(board);
-    console.log(board, indexA, indexB);
-    console.log("Pair!");
   }
 };
 
