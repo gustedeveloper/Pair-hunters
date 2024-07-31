@@ -16,31 +16,31 @@ export const cardCanBeFlipped = (board: Board, index: number): boolean => {
     board.gameState !== "TwoCardsFlipped"
   ) {
     return true;
+  } else {
+    return false;
   }
-  return false;
 };
 
 export const flipCard = (board: Board, index: number): void => {
   board.cards[index].flipped = true;
   flipImgCard(board, index);
+  checkGameState(board, index);
+};
+
+const checkGameState = (board: Board, index: number): void => {
   if (
     board.indexFlippedCardA === undefined &&
     board.gameState === "ZeroCardsFlipped"
   ) {
     board.gameState = "OneCardFlipped";
-    console.log(board.gameState);
     board.indexFlippedCardA = index;
-    console.log(board.indexFlippedCardA);
   } else if (
     board.indexFlippedCardB === undefined &&
     board.gameState === "OneCardFlipped"
   ) {
     board.gameState = "TwoCardsFlipped";
-    console.log(board.gameState);
     board.indexFlippedCardB = index;
-    console.log(board.indexFlippedCardB);
   }
-
   if (board.gameState === "TwoCardsFlipped") {
     if (
       board.indexFlippedCardA !== undefined &&
