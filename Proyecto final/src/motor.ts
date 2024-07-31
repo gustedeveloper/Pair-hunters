@@ -1,5 +1,5 @@
 import { Board, Card } from "./model";
-import { flipImgCard, flipBackImg, flipBackAllImg } from "./ui";
+import { flipImgCard, flipBackImg, flipBackAllImg, winGame } from "./ui";
 
 export const shuffleCards = (cards: Card[]): Card[] => {
   for (let i = cards.length - 1; i > 0; i--) {
@@ -87,8 +87,7 @@ const foundPair = (board: Board, indexA: number, indexB: number): void => {
 
   if (isCompleted === true) {
     board.gameState = "GameCompleted";
-    console.log("CONGRATS! YOU MADE IT :)");
-    console.log(board);
+    winGame();
   } else {
     setTimeout(() => {
       resetGameState(board);

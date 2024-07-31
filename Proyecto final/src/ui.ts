@@ -56,10 +56,19 @@ export const flipBackAllImg = () => {
   });
 };
 
+export const winGame = () => {
+  if (startButton && startButton instanceof HTMLButtonElement) {
+    startButton.disabled = false;
+    console.log("YOU WIN!");
+    console.log(startButton.disabled);
+  }
+};
+
 export const handleClickButtons = () => {
   if (startButton && startButton instanceof HTMLButtonElement) {
     startButton.addEventListener("click", () => {
       startGame(board);
+      startButton.disabled = true;
     });
   }
 };
