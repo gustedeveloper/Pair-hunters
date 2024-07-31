@@ -27,6 +27,7 @@ export const cardCanBeFlipped = (board: Board, index: number): boolean => {
   ) {
     return true;
   }
+
   return false;
 };
 
@@ -87,6 +88,7 @@ const foundPair = (board: Board, indexA: number, indexB: number): void => {
   if (isCompleted === true) {
     board.gameState = "GameCompleted";
     console.log("CONGRATS! YOU MADE IT :)");
+    console.log(board);
   } else {
     resetBoardFlippedCardIndex(board);
     resetGameState(board);
@@ -124,10 +126,19 @@ export const gameCompleted = (board: Board): boolean => {
   }
 };
 
-export const startGame = (board: Board): void => {
-  if (board.gameState === "GameCompleted") {
-    flipBackAllImg();
-  }
-  board.cards = shuffleCards(board.cards);
+const resetBoard = (board: Board): void => {
+  board.cards.forEach((card) => {
+    card.flipped = false;
+    card.found = false;
+  });
   board.gameState = "ZeroCardsFlipped";
+  board.indexFlippedCardA = undefined;
+  board.indexFlippedCardB = undefined;
+};
+
+export const startGame = (board: Board): void => {
+  resetBoard(board);
+  flipBackAllImg();
+  board.cards = shuffleCards(board.cards);
+  console.log(board);
 };

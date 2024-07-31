@@ -9,6 +9,10 @@ board.cards.forEach((__, index) => {
 
   if (divCard && divCard instanceof HTMLDivElement) {
     divCard.addEventListener("click", () => {
+      if (board.gameState === "GameNotStarted") {
+        console.log("Press the button below to start the game!");
+      }
+
       if (
         board.gameState !== "GameNotStarted" &&
         board.gameState !== "TwoCardsFlipped"
@@ -17,8 +21,6 @@ board.cards.forEach((__, index) => {
         if (canBeFlipped === true) {
           flipCard(board, index);
         }
-      } else {
-        console.log("Press the button below to start the game!");
       }
     });
   }
