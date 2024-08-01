@@ -19,6 +19,7 @@ board.cards.forEach((__, index) => {
       ) {
         const canBeFlipped = checkIfCardCanBeFlipped(board, index);
         if (canBeFlipped === true) {
+          divCard.classList.add("flipped");
           flipCard(board, index);
         }
       }
@@ -40,19 +41,34 @@ export const flipImgCard = (board: Board, index: number): void => {
 };
 
 export const flipBackImg = (index: number): void => {
+  const divCard = document.querySelector(`div[data-index="${index}"]`);
   const imgCardElement = document.querySelector(`img[data-index="${index}"]`);
 
-  if (imgCardElement && imgCardElement instanceof HTMLImageElement) {
-    imgCardElement.src = "";
+  setTimeout(() => {
+    if (imgCardElement && imgCardElement instanceof HTMLImageElement) {
+      imgCardElement.src = "";
+    }
+  }, 200);
+
+  if (divCard && divCard instanceof HTMLElement) {
+    divCard.classList.remove("flipped");
   }
 };
 
 export const flipBackAllImg = () => {
+  const allDivCard = document.querySelectorAll("div[data-index]");
   const imgElements = document.querySelectorAll("img[data-index]");
-  imgElements.forEach((img) => {
-    if (img instanceof HTMLImageElement) {
-      img.src = "";
-    }
+
+  setTimeout(() => {
+    imgElements.forEach((img) => {
+      if (img instanceof HTMLImageElement) {
+        img.src = "";
+      }
+    });
+  }, 200);
+
+  allDivCard.forEach((div) => {
+    div.classList.remove("flipped");
   });
 };
 
