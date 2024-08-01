@@ -65,7 +65,7 @@ type GameState =
   | "GameCompleted"
   | "GameOver";
 
-export const GAME_OVER: number = 5;
+export const GAME_OVER: number = 10;
 
 export interface Board {
   cards: Card[];

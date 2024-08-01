@@ -1,5 +1,11 @@
 import { Board, Card } from "./model";
-import { flipImgCard, flipBackImg, flipBackAllImg, winGame } from "./ui";
+import {
+  flipImgCard,
+  flipBackImg,
+  flipBackAllImg,
+  winGame,
+  showNumberOfAttempts,
+} from "./ui";
 
 export const shuffleCards = (cards: Card[]): Card[] => {
   for (let i = cards.length - 1; i > 0; i--) {
@@ -99,13 +105,14 @@ const foundPair = (board: Board, indexA: number, indexB: number): void => {
 const pairNotFound = (board: Board, indexA: number, indexB: number): void => {
   console.log(board, indexA, indexB);
   console.log("Not pair!");
-  board.attempts++;
   setTimeout(() => {
     flipBackImg(indexA);
     flipBackImg(indexB);
     resetBoardFlippedCardIndex(board);
     resetGameState(board);
     console.log(board.gameState);
+    board.attempts++;
+    showNumberOfAttempts();
   }, 1500);
 };
 
@@ -132,12 +139,14 @@ const resetBoard = (board: Board): void => {
     card.found = false;
   });
   board.gameState = "ZeroCardsFlipped";
+  board.attempts = 0;
   board.indexFlippedCardA = undefined;
   board.indexFlippedCardB = undefined;
 };
 
 export const startGame = (board: Board): void => {
   resetBoard(board);
+  showNumberOfAttempts();
   flipBackAllImg();
   board.cards = shuffleCards(board.cards);
   console.log(board);
