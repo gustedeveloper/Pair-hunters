@@ -62,11 +62,9 @@ const checkGameState = (board: Board, index: number): void => {
         board.indexFlippedCardB,
         board
       );
-      if (itsPair === true) {
-        foundPair(board, board.indexFlippedCardA, board.indexFlippedCardB);
-      } else if (itsPair === false) {
-        pairNotFound(board, board.indexFlippedCardA, board.indexFlippedCardB);
-      }
+      itsPair === true
+        ? foundPair(board, board.indexFlippedCardA, board.indexFlippedCardB)
+        : pairNotFound(board, board.indexFlippedCardA, board.indexFlippedCardB);
     }
   }
 };
