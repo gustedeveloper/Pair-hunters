@@ -99,6 +99,7 @@ const foundPair = (board: Board, indexA: number, indexB: number): void => {
 const pairNotFound = (board: Board, indexA: number, indexB: number): void => {
   console.log(board, indexA, indexB);
   console.log("Not pair!");
+  board.attempts++;
   setTimeout(() => {
     flipBackImg(indexA);
     flipBackImg(indexB);
