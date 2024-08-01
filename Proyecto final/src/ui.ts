@@ -1,4 +1,4 @@
-import { board, Board } from "./model";
+import { attempts, GAME_OVER, board, Board } from "./model";
 
 import { startGame, cardCanBeFlipped, flipCard } from "./motor";
 
@@ -61,6 +61,15 @@ export const winGame = () => {
     startButton.disabled = false;
     console.log("YOU WIN!");
     console.log(startButton.disabled);
+  }
+};
+
+export const showNumberOfAttempts = () => {
+  const attemptsElement = document.getElementById("attempts");
+  if (attemptsElement && attemptsElement instanceof HTMLElement) {
+    attemptsElement.innerHTML = `${attempts} of ${GAME_OVER}`;
+  } else {
+    console.error("showNumberOfAttempts: The element id attempts not found");
   }
 };
 

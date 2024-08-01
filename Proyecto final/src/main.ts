@@ -1,5 +1,9 @@
 import "./style.css";
 
-import { handleClickButtons } from "./ui";
+import { handleClickButtons, showNumberOfAttempts } from "./ui";
+
+document.addEventListener("DOMContentLoaded", () => {
+  showNumberOfAttempts();
+});
 
 handleClickButtons();

@@ -62,7 +62,12 @@ type GameState =
   | "ZeroCardsFlipped"
   | "OneCardFlipped"
   | "TwoCardsFlipped"
-  | "GameCompleted";
+  | "GameCompleted"
+  | "GameOver";
+
+export let attempts: number = 0;
+
+export const GAME_OVER: number = 5;
 
 export interface Board {
   cards: Card[];
