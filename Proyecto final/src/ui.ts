@@ -16,7 +16,8 @@ board.cards.forEach((__, index) => {
 
       if (
         board.gameState !== "GameNotStarted" &&
-        board.gameState !== "TwoCardsFlipped"
+        board.gameState !== "TwoCardsFlipped" &&
+        board.gameState !== 'GameOver'
       ) {
         const canBeFlipped = checkIfCardCanBeFlipped(board, index);
         if (canBeFlipped === true) {
