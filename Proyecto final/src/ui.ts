@@ -105,6 +105,9 @@ export const showMessage = (board: Board) => {
     case "GameNotStarted":
       message = "Press the button below to start the game!";
       break;
+    case "ZeroCardsFlipped":
+      message = "Try to hunt all the pairs!";
+      break;
     case "GameCompleted":
       message = "Congratulations! You've hunted all the pairs!";
       break;
@@ -123,13 +126,10 @@ export const showMessage = (board: Board) => {
 export const handleClickButtons = () => {
   if (
     startButton &&
-    startButton instanceof HTMLButtonElement &&
-    messageElement &&
-    messageElement instanceof HTMLElement
+    startButton instanceof HTMLButtonElement
   ) {
     startButton.addEventListener("click", () => {
       startGame(board);
-      messageElement.innerHTML = "";
       startButton.disabled = true;
     });
   }
