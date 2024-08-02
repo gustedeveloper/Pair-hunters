@@ -152,6 +152,7 @@ const resetBoard = (board: Board): void => {
 
 export const startGame = (board: Board): void => {
   resetBoard(board);
+  showMessage(board);
   showNumberOfAttempts();
   flipBackAllImg();
   board.cards = shuffleCards(board.cards);
