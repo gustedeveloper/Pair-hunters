@@ -1,10 +1,11 @@
-import { Board, Card } from "./model";
+import { Board, Card, GAME_OVER } from "./model";
 import {
   flipImgCard,
   flipBackImg,
   flipBackAllImg,
   winGame,
   showNumberOfAttempts,
+  lostGame,
 } from "./ui";
 
 export const shuffleCards = (cards: Card[]): Card[] => {
@@ -33,7 +34,6 @@ export const cardCanBeFlipped = (board: Board, index: number): boolean => {
   ) {
     return true;
   }
-
   return false;
 };
 
@@ -41,7 +41,6 @@ export const flipCard = (board: Board, index: number): void => {
   board.cards[index].flipped = true;
   flipImgCard(board, index);
   checkGameState(board, index);
-  console.log("its flipping");
 };
 
 const checkGameState = (board: Board, index: number): void => {
@@ -95,24 +94,24 @@ const foundPair = (board: Board, indexA: number, indexB: number): void => {
   } else {
     setTimeout(() => {
       resetGameState(board);
-      console.log(board, indexA, indexB);
-      console.log("Pair!");
-    }, 1300);
+    }, 1500);
     resetBoardFlippedCardIndex(board);
   }
 };
 
 const pairNotFound = (board: Board, indexA: number, indexB: number): void => {
-  console.log(board, indexA, indexB);
-  console.log("Not pair!");
   setTimeout(() => {
     flipBackImg(indexA);
     flipBackImg(indexB);
+  }, 1000);
+  setTimeout(() => {
+    board.cards[indexA].flipped = false;
+    board.cards[indexB].flipped = false;
     resetBoardFlippedCardIndex(board);
     resetGameState(board);
-    console.log(board.gameState);
     board.attempts++;
     showNumberOfAttempts();
+    gameOver(board);
   }, 1500);
 };
 
@@ -133,6 +132,13 @@ export const gameCompleted = (board: Board): boolean => {
   }
 };
 
+export const gameOver = (board: Board): void => {
+  if (board.attempts > GAME_OVER) {
+    board.gameState = "GameOver";
+    lostGame();
+  }
+};
+
 const resetBoard = (board: Board): void => {
   board.cards.forEach((card) => {
     card.flipped = false;
@@ -149,5 +155,4 @@ export const startGame = (board: Board): void => {
   showNumberOfAttempts();
   flipBackAllImg();
   board.cards = shuffleCards(board.cards);
-  console.log(board);
 };

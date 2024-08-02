@@ -3,6 +3,7 @@ import { GAME_OVER, board, Board } from "./model";
 import { startGame, cardCanBeFlipped, flipCard } from "./motor";
 
 const startButton = document.getElementById("start");
+const messageElement = document.getElementById("message");
 
 board.cards.forEach((__, index) => {
   const divCard = document.querySelector(`div[data-index="${index}"]`);
@@ -10,7 +11,7 @@ board.cards.forEach((__, index) => {
   if (divCard && divCard instanceof HTMLDivElement) {
     divCard.addEventListener("click", () => {
       if (board.gameState === "GameNotStarted") {
-        console.log("Press the button below to start the game!");
+        showMessage(board);
       }
 
       if (
@@ -44,14 +45,14 @@ export const flipBackImg = (index: number): void => {
   const divCard = document.querySelector(`div[data-index="${index}"]`);
   const imgCardElement = document.querySelector(`img[data-index="${index}"]`);
 
-  setTimeout(() => {
-    if (imgCardElement && imgCardElement instanceof HTMLImageElement) {
-      imgCardElement.src = "";
-    }
-  }, 200);
-
   if (divCard && divCard instanceof HTMLElement) {
     divCard.classList.remove("flipped");
+
+    setTimeout(() => {
+      if (imgCardElement && imgCardElement instanceof HTMLImageElement) {
+        imgCardElement.src = "";
+      }
+    }, 200);
   }
 };
 
@@ -75,8 +76,17 @@ export const flipBackAllImg = () => {
 export const winGame = () => {
   if (startButton && startButton instanceof HTMLButtonElement) {
     startButton.disabled = false;
-    console.log("YOU WIN!");
-    console.log(startButton.disabled);
+    showMessage(board);
+  }
+};
+
+export const lostGame = () => {
+  if (startButton && startButton instanceof HTMLButtonElement) {
+    startButton.disabled = false;
+    showMessage(board);
+    setTimeout(() => {
+      flipBackAllImg();
+    }, 200);
   }
 };
 
@@ -89,10 +99,37 @@ export const showNumberOfAttempts = () => {
   }
 };
 
+export const showMessage = (board: Board) => {
+  let message: string = "";
+  switch (board.gameState) {
+    case "GameNotStarted":
+      message = "Press the button below to start the game!";
+      break;
+    case "GameCompleted":
+      message = "Congratulations! You've hunted all the pairs!";
+      break;
+    case "GameOver":
+      message = "Game over! You've run out of attempts. Try again?";
+      break;
+    default:
+      message = "Something went wrong...";
+      break;
+  }
+  if (messageElement && messageElement instanceof HTMLElement) {
+    messageElement.innerHTML = message;
+  }
+};
+
 export const handleClickButtons = () => {
-  if (startButton && startButton instanceof HTMLButtonElement) {
+  if (
+    startButton &&
+    startButton instanceof HTMLButtonElement &&
+    messageElement &&
+    messageElement instanceof HTMLElement
+  ) {
     startButton.addEventListener("click", () => {
       startGame(board);
+      messageElement.innerHTML = "";
       startButton.disabled = true;
     });
   }
