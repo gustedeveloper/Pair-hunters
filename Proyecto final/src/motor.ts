@@ -4,6 +4,7 @@ import {
   flipBackImg,
   flipBackAllImg,
   winGame,
+  showMessage,
   showNumberOfAttempts,
   lostGame,
 } from "./ui";
