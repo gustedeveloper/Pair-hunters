@@ -48,6 +48,11 @@ h1 {
   text-align: center;
 }
 
+#message {
+  height: 40px;
+  color: salmon;
+}
+
 #card-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
