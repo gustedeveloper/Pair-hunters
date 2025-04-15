@@ -1,3 +1,10 @@
+import img1Url from "./assets/images/1.png";
+import img2Url from "./assets/images/2.png";
+import img3Url from "./assets/images/3.png";
+import img4Url from "./assets/images/4.png";
+import img5Url from "./assets/images/5.png";
+import img6Url from "./assets/images/6.png";
+
 export interface Card {
   idCard: number;
   image: string;
@@ -13,27 +20,27 @@ interface CardData {
 const cardsData: CardData[] = [
   {
     idCard: 1,
-    image: "/images/1.png",
+    image: img1Url,
   },
   {
     idCard: 2,
-    image: "/images/2.png",
+    image: img2Url,
   },
   {
     idCard: 3,
-    image: "/images/3.png",
+    image: img3Url,
   },
   {
     idCard: 4,
-    image: "/images/4.png",
+    image: img4Url,
   },
   {
     idCard: 5,
-    image: "/images/5.png",
+    image: img5Url,
   },
   {
     idCard: 6,
-    image: "/images/6.png",
+    image: img6Url,
   },
 ];
 
