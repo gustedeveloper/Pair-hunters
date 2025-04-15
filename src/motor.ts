@@ -134,7 +134,7 @@ export const gameCompleted = (board: Board): boolean => {
 };
 
 export const gameOver = (board: Board): void => {
-  if (board.attempts > GAME_OVER) {
+  if (board.attempts >= GAME_OVER) {
     board.gameState = "GameOver";
     lostGame();
   }
