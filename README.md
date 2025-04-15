@@ -1,6 +1,6 @@
 # Pair Hunters - Memory Game
 
-![Memory Game Screenshot](./public/images/placeholder.png)
+![Memory Game Screenshot](./src/assets/images/demo.png)
 
 A classic card matching memory game built with modern web technologies. Flip cards, find pairs, and test your memory before you run out of attempts!
 
