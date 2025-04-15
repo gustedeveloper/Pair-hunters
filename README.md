@@ -12,7 +12,7 @@ A classic card matching memory game built with modern web technologies. Flip car
 - Tracks the number of attempts made.
 - Displays game status messages (Start, Playing, Win, Game Over).
 - Celebratory fireworks animation upon winning using `canvas-confetti`.
-- Responsive design (adjust this if not fully responsive yet).
+- Responsive design.
 
 ## Technologies Used
 
