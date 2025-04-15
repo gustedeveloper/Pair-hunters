@@ -1,10 +1,66 @@
-# Bootcamp JavaScript 2 - Lemoncode
+# Pair Hunters - Memory Game
 
-## Laboratorio Módulo 8.3 - Aplicación de memoria
+![Memory Game Screenshot](./src/images/placeholder.png)
 
-Este ejercicio es parte del Bootcamp de JavaScript de Lemoncode y representa la décima entrega correspondiente al Módulo 8: Arrays y Bucles.
-En este proyecto, he desarrollado un clásico juego de memoria utilizando TypeScript y HTML/CSS, explorando conceptos esenciales como la manipulación de arrays, la creación de interfaces, y el manejo del DOM con eventos. A través de diversas pruebas de concepto, he aprendido a implementar funcionalidades clave, como el barajado de cartas, la detección de coincidencias, y la gestión del estado del juego. Además, el uso de métodos de arrays me ha permitido manejar las cartas de manera eficiente, mientras que TypeScript ha sido fundamental para tipar las estructuras de datos, garantizando un desarrollo robusto y mantenible. El proyecto no solo ha fortalecido mi comprensión de estos conceptos técnicos, sino que también ha mejorado mi habilidad para dividir problemas complejos en pasos más manejables y fortaleciendo mi capacidad para estructurar el código de manera clara y mantenible.
+A classic card matching memory game built with modern web technologies. Flip cards, find pairs, and test your memory before you run out of attempts!
 
-## Autor
+## Features
 
-Este ejercicio ha sido desarrollado por Guste Gaubaite, como parte del Bootcamp de Javascript de Lemoncode.
+- Interactive card flipping animations.
+- Match pairs of identical cards.
+- Limited attempts (10) to add a challenge.
+- Tracks the number of attempts made.
+- Displays game status messages (Start, Playing, Win, Game Over).
+- Celebratory fireworks animation upon winning using `canvas-confetti`.
+- Responsive design (adjust this if not fully responsive yet).
+
+## Technologies Used
+
+- HTML5
+- CSS3
+- TypeScript
+- Vite (as the build tool/dev server)
+- canvas-confetti (for the winning animation)
+
+## Live Demo
+
+[https://gustedeveloper.github.io/Pair-hunters/]
+
+## Installation and Setup
+
+To run this project locally:
+
+1.  **Clone the repository:**
+    ```bash
+    git clone git@github.com:gustedeveloper/Pair-hunters.git
+    cd Pair-hunters
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    # yarn install
+    ```
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    # or
+    # yarn dev
+    ```
+4.  Open your browser and navigate to the local URL provided by Vite (usually `http://localhost:5173`).
+
+## How to Play
+
+1.  Click the "Start Game" button.
+2.  Click on any card to flip it over.
+3.  Click on a second card to see if it's a match.
+4.  If the cards match, they stay face up.
+5.  If they don't match, they will flip back face down after a short delay, and your attempt count increases.
+6.  Continue matching pairs until all cards are face up.
+7.  You win if you match all pairs within 10 attempts.
+8.  You lose if you run out of attempts before matching all pairs.
+9.  Click "Start Game" again to play a new round.
+
+## Author
+
+- **gustedeveloper** - [https://www.linkedin.com/in/gustegaubaite/]
