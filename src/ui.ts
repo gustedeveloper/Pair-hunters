@@ -2,6 +2,8 @@ import { GAME_OVER, board, Board } from "./model";
 
 import { startGame, cardCanBeFlipped, flipCard } from "./motor";
 
+import confetti from "canvas-confetti";
+
 const startButton = document.getElementById("start");
 const messageElement = document.getElementById("message");
 
@@ -17,7 +19,7 @@ board.cards.forEach((__, index) => {
       if (
         board.gameState !== "GameNotStarted" &&
         board.gameState !== "TwoCardsFlipped" &&
-        board.gameState !== 'GameOver'
+        board.gameState !== "GameOver"
       ) {
         const canBeFlipped = checkIfCardCanBeFlipped(board, index);
         if (canBeFlipped === true) {
@@ -78,6 +80,7 @@ export const winGame = () => {
   if (startButton && startButton instanceof HTMLButtonElement) {
     startButton.disabled = false;
     showMessage(board);
+    launchFireworks();
   }
 };
 
@@ -125,13 +128,44 @@ export const showMessage = (board: Board) => {
 };
 
 export const handleClickButtons = () => {
-  if (
-    startButton &&
-    startButton instanceof HTMLButtonElement
-  ) {
+  if (startButton && startButton instanceof HTMLButtonElement) {
     startButton.addEventListener("click", () => {
       startGame(board);
       startButton.disabled = true;
     });
   }
+};
+
+const launchFireworks = () => {
+  const duration = 3 * 1000;
+  const animationEnd = Date.now() + duration;
+  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+  function randomInRange(min: number, max: number) {
+    return Math.random() * (max - min) + min;
+  }
+
+  const interval: NodeJS.Timer = setInterval(function () {
+    const timeLeft = animationEnd - Date.now();
+
+    if (timeLeft <= 0) {
+      return clearInterval(interval);
+    }
+
+    const particleCount = 50 * (timeLeft / duration);
+
+    confetti(
+      Object.assign({}, defaults, {
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      })
+    );
+
+    confetti(
+      Object.assign({}, defaults, {
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      })
+    );
+  }, 250);
 };
